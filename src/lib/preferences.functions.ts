@@ -20,7 +20,8 @@ const UpdateInput = z.object({
     .trim()
     .regex(/^\+?[0-9\s-]{8,20}$/u, "Número de WhatsApp inválido")
     .optional()
-    .or(z.literal("")),
+    .or(z.literal(""))
+    .nullable(),
   categories: z.array(z.string()).max(20),
   keywords: z.array(z.string()).max(50),
   min_amount: z.number().nonnegative().nullable().optional(),
