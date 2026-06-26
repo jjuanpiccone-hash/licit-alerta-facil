@@ -14,7 +14,164 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      alerts_sent: {
+        Row: {
+          channel: string
+          error_message: string | null
+          id: string
+          sent_at: string
+          status: string
+          tender_id: string
+          user_id: string
+        }
+        Insert: {
+          channel?: string
+          error_message?: string | null
+          id?: string
+          sent_at?: string
+          status?: string
+          tender_id: string
+          user_id: string
+        }
+        Update: {
+          channel?: string
+          error_message?: string | null
+          id?: string
+          sent_at?: string
+          status?: string
+          tender_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "alerts_sent_tender_id_fkey"
+            columns: ["tender_id"]
+            isOneToOne: false
+            referencedRelation: "tenders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          company_name: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          plan: Database["public"]["Enums"]["plan_type"]
+          updated_at: string
+          whatsapp_number: string | null
+        }
+        Insert: {
+          company_name?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          plan?: Database["public"]["Enums"]["plan_type"]
+          updated_at?: string
+          whatsapp_number?: string | null
+        }
+        Update: {
+          company_name?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          plan?: Database["public"]["Enums"]["plan_type"]
+          updated_at?: string
+          whatsapp_number?: string | null
+        }
+        Relationships: []
+      }
+      tenders: {
+        Row: {
+          ai_summary: string | null
+          category: string | null
+          classified_at: string | null
+          created_at: string
+          currency: string | null
+          deadline: string | null
+          description: string | null
+          estimated_amount: number | null
+          external_id: string | null
+          id: string
+          organism: string
+          published_at: string | null
+          source_url: string | null
+          status: string
+          tags: string[] | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          ai_summary?: string | null
+          category?: string | null
+          classified_at?: string | null
+          created_at?: string
+          currency?: string | null
+          deadline?: string | null
+          description?: string | null
+          estimated_amount?: number | null
+          external_id?: string | null
+          id?: string
+          organism: string
+          published_at?: string | null
+          source_url?: string | null
+          status?: string
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          ai_summary?: string | null
+          category?: string | null
+          classified_at?: string | null
+          created_at?: string
+          currency?: string | null
+          deadline?: string | null
+          description?: string | null
+          estimated_amount?: number | null
+          external_id?: string | null
+          id?: string
+          organism?: string
+          published_at?: string | null
+          source_url?: string | null
+          status?: string
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_preferences: {
+        Row: {
+          categories: string[]
+          keywords: string[]
+          min_amount: number | null
+          updated_at: string
+          user_id: string
+          whatsapp_enabled: boolean
+        }
+        Insert: {
+          categories?: string[]
+          keywords?: string[]
+          min_amount?: number | null
+          updated_at?: string
+          user_id: string
+          whatsapp_enabled?: boolean
+        }
+        Update: {
+          categories?: string[]
+          keywords?: string[]
+          min_amount?: number | null
+          updated_at?: string
+          user_id?: string
+          whatsapp_enabled?: boolean
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +180,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      plan_type: "free" | "pro"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +307,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      plan_type: ["free", "pro"],
+    },
   },
 } as const
