@@ -23,8 +23,13 @@ function Preferencias() {
   const [selectedCats, setSelectedCats] = useState<string[]>(data.preferences?.categories ?? []);
 
   const mutation = useMutation({
-    mutationFn: (payload: Parameters<typeof updateMyPreferences>[0]["data"]) =>
-      updateFn({ data: payload }),
+    mutationFn: (payload: {
+      whatsapp_number: string | null;
+      categories: string[];
+      keywords: string[];
+      min_amount: number | null;
+      whatsapp_enabled: boolean;
+    }) => updateFn({ data: payload }),
     onSuccess: () => {
       toast.success("Preferencias guardadas");
       qc.invalidateQueries({ queryKey: ["my-profile"] });
@@ -45,6 +50,7 @@ function Preferencias() {
         .map((k) => k.trim())
         .filter(Boolean),
       min_amount: minAmount ? Number(minAmount) : null,
+      whatsapp_enabled: true,
     });
   };
 
