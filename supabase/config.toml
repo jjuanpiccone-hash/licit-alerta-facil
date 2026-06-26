@@ -1,1 +1,10 @@
 project_id = "lcoovqqsdradsrwboxfu"
+
+[functions.scrape-arce]
+verify_jwt = false
+
+[functions.classify-tender]
+verify_jwt = false
+
+[functions.match-and-alert]
+verify_jwt = false
