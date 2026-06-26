@@ -10,7 +10,7 @@ export function PublicHeader() {
           LicitIA
         </Link>
         <nav className="hidden items-center gap-6 text-sm text-muted-foreground md:flex">
-          <Link to="/" hash="features" className="hover:text-foreground">Cómo funciona</Link>
+          <a href="/#features" className="hover:text-foreground">Cómo funciona</a>
           <Link to="/pricing" className="hover:text-foreground">Precios</Link>
         </nav>
         <div className="flex items-center gap-2">
@@ -22,7 +22,6 @@ export function PublicHeader() {
           </Link>
           <Link
             to="/auth"
-            search={{ mode: "signup" }}
             className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
           >
             Probá gratis
